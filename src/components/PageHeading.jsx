@@ -20,7 +20,7 @@ const PageHeading = () => {
       <div className="my-2">
         <iframe
           src="https://ghbtns.com/github-btn.html?user=pedrostanzani&repo=closest-tailwind-color&type=star&count=true"
-          frameborder="0"
+          // frameBorder="0"
           width="100"
           height="20"
           title="GitHub"
