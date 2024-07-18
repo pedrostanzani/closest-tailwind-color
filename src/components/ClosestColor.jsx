@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { Check, Copy } from "lucide-react";
-import { findClosestPaletteColor, getTextColor } from "@/utils/color";
-
+import React from "react";
+import { findClosestPaletteColor } from "@/lib/color";
 import SelectedColorCard from "@/components/SelectedColorCard";
 import ColorCard from "@/components/ColorCard";
 

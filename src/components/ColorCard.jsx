@@ -1,7 +1,7 @@
+"use client";
 import React, { useState } from "react";
-
 import { Check, Copy } from "lucide-react";
-import { getTextColor } from "@/utils/color";
+import { getTextColor } from "@/lib/color";
 
 const ColorCard = (props) => {
   const [isCopied, setIsCopied] = useState(false);

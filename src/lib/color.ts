@@ -1,11 +1,13 @@
 import palette from "./palette.json";
 
-const findClosestPaletteColor = (hexColor) => {
+type StringMap = { [key: string]: unknown };
+
+const findClosestPaletteColor = (hexColor: string) => {
   let minDiff = Infinity;
   let closestColor = null;
 
   // Convert the hex color to RGB values
-  const hexToRgb = (hex) => {
+  const hexToRgb = (hex: string) => {
     const bigint = parseInt(hex.substring(1), 16);
     const r = (bigint >> 16) & 255;
     const g = (bigint >> 8) & 255;
@@ -14,7 +16,7 @@ const findClosestPaletteColor = (hexColor) => {
   };
 
   // Calculate the color difference using Euclidean distance formula
-  const colorDiff = (color1, color2) => {
+  const colorDiff = (color1: number[], color2: number[]) => {
     const [r1, g1, b1] = color1;
     const [r2, g2, b2] = color2;
     const diffR = r1 - r2;
@@ -25,7 +27,7 @@ const findClosestPaletteColor = (hexColor) => {
 
   // Iterate over each palette color and find the closest one
   for (const key in palette) {
-    const paletteColor = palette[key];
+    const paletteColor = palette[key as keyof typeof palette];
     const color1 = hexToRgb(hexColor);
     const color2 = hexToRgb(paletteColor);
     const diff = colorDiff(color1, color2);
@@ -36,10 +38,13 @@ const findClosestPaletteColor = (hexColor) => {
     }
   }
 
-  return { tailwind: closestColor, hex: palette[closestColor] };
+  return {
+    tailwind: closestColor,
+    hex: palette[closestColor as keyof typeof palette],
+  };
 };
 
-const getTextColor = (background) => {
+const getTextColor = (background: string) => {
   // Remove the "#" symbol from the HEX string
   const hex = background.replace("#", "");
 
@@ -55,9 +60,9 @@ const getTextColor = (background) => {
   return brightness > 128 ? "#000000" : "#FFFFFF";
 };
 
-const isValidHexColor = (str) => {
+const isValidHexColor = (str: string) => {
   const hexColorRegex = /^(?:#)?([0-9A-Fa-f]{6})$/;
   return hexColorRegex.test(str);
-}
+};
 
 export { findClosestPaletteColor, getTextColor, isValidHexColor };
