@@ -42,7 +42,7 @@ export function SettingsButton() {
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Settings</DialogTitle>
+            <DialogTitle className="text-xl">Settings</DialogTitle>
           </DialogHeader>
           <SettingsForm onDone={() => setOpen(false)} />
         </DialogContent>
@@ -59,10 +59,7 @@ export function SettingsButton() {
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>Edit profile</DrawerTitle>
-          <DrawerDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
-          </DrawerDescription>
+          <DrawerTitle className="text-xl">Settings</DrawerTitle>
         </DrawerHeader>
         <SettingsForm onDone={() => setOpen(false)} className="px-4" />
         <DrawerFooter className="pt-2">
@@ -87,8 +84,8 @@ function SettingsForm({
   const { includeBlackAndWhite, setIncludeBlackAndWhite } = useSettingsStore();
 
   return (
-    <div className="space-y-6">
-      <div className={cn("grid items-start gap-6", className)}>
+    <div className={cn("space-y-8", className)}>
+      <div className={"grid items-start gap-7"}>
         <div>
           <h2 className="font-medium mb-1">Tailwind version</h2>
           <p className="text-sm text-zinc-500 mb-2.5">
