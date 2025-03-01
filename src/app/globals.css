@@ -1,21 +1,58 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.5rem;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #eeeeee;
+  color: #0a0c1a;
+}
+
+::selection {
+  background-color: #0157e4;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: #0157e4;
+  color: #ffffff;
+}
 
 .color-picker .react-colorful {
   width: auto;
+  height: 220px;
 }
 
 .color-picker .react-colorful__saturation {
-  margin-bottom: 8px;
-  border-radius: 5px;
+  margin-bottom: 12px;
+  border-radius: 6px;
   border-bottom: none;
 }
 
 .color-picker .react-colorful__hue,
 .color-picker .react-colorful__alpha {
   height: 16px;
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
 .color-picker .react-colorful__hue-pointer,
