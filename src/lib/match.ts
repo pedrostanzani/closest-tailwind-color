@@ -62,9 +62,11 @@ export function getOKLCHColor(tailwindColorName: string, tailwindVersion: "v3" |
 
   const [color, shade] = tailwindColorName.split("-");
 
-  try {
-    return oklch_v4_file[color][shade] ?? null;
-  } catch (error) {
+  const shades = oklch_v4_file[color];
+  if (!shades) {
     return null;
   }
+
+  const shadeValue = shades[shade as keyof typeof shades];
+  return shadeValue ?? null;
 }

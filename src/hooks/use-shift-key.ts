@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 
 export function useShiftKey(): boolean {
-  let [isShiftPressed, setIsShiftPressed] = useState(false);
+  const [isShiftPressed, setIsShiftPressed] = useState(false);
 
   useEffect(() => {
-    let handleKeyDown = (event: KeyboardEvent) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Shift") {
         setIsShiftPressed(true);
       }
     };
 
-    let handleKeyUp = (event: KeyboardEvent) => {
+    const handleKeyUp = (event: KeyboardEvent) => {
       if (event.key === "Shift") {
         setIsShiftPressed(false);
       }

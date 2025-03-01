@@ -1,5 +1,3 @@
-import { Settings } from "lucide-react";
-
 import { Navbar } from "@/components/navbar";
 import { Matchmaker } from "@/components/matchmaker";
 import { SettingsButton } from "@/components/settings-button";

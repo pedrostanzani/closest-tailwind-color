@@ -39,7 +39,7 @@ export const ColorInput = ({
     if (childHex.length !== 3 || [...childHex].map(c => c.repeat(2)).join('') !== parentHex) {
       setValue(color);
     }
-  }, [color]);
+  }, [color, value]);
 
   return (
     <div className="flex flex-col gap-1 mb-5">
