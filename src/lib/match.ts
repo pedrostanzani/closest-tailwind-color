@@ -32,7 +32,6 @@ export function findClosestPaletteColor(hexColor: string, tailwindVersion: "v3" 
 
   // Iterate over each palette color and find the closest one
   for (const key in hex_file) {
-    console.log(key)
     if (!includeBlackAndWhite && (key === "black" || key === "white")) {
       continue;
     }
