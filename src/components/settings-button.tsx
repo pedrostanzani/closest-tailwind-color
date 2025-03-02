@@ -65,7 +65,7 @@ export function SettingsButton() {
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button className="cursor-pointer" variant="outline">
-              Cancel
+              Close
             </Button>
           </DrawerClose>
         </DrawerFooter>
