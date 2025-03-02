@@ -14,8 +14,12 @@ import { ColorInput } from "./color-input";
 import { findClosestPaletteColor, getOKLCHColor } from "@/lib/match";
 import { useSettingsStore } from "@/stores/settings";
 
+const DEFAULT_COLOR = "#be3737";
+
 export const Matchmaker = () => {
-  const [color, setColor] = useState("#be3737");
+  const [color, setColor] = useState(DEFAULT_COLOR);
+  const [inputValue, setInputValue] = useState(DEFAULT_COLOR);
+
   const { tailwindVersion, includeBlackAndWhite } = useSettingsStore();
   const { tailwindColorName, hex: tailwindHex } = findClosestPaletteColor(
     color,
@@ -24,10 +28,24 @@ export const Matchmaker = () => {
   );
   const oklchColor = getOKLCHColor(tailwindColorName, tailwindVersion);
 
+  const handleInputChange = (value: string) => {
+    const newColor = value.replace(/[^0-9A-Fa-f]/g, '').slice(0, 6);
+    setInputValue(`#${newColor}`);
+
+    if (newColor.length === 3) {
+      setColor(`#${[...newColor].map(c => c.repeat(2)).join('')}`);
+    } else if (newColor.length === 6) {
+      setColor(`#${newColor}`);
+    }
+  }
+
   return (
     <div className="mt-6">
-      <ColorInput color={color} setValidColor={setColor} />
-      <ColorPicker className="mb-6" color={color} onChange={setColor} />
+      <ColorInput value={inputValue} setValue={handleInputChange} />
+      <ColorPicker className="mb-6" color={color} onChange={(color) => {
+        setColor(color);
+        setInputValue(color);
+      }} />
       <Card className="gap-4">
         <CardHeader className="gap-0.5">
           <CardTitle className="text-xl tracking-tight font-semibold">
