@@ -1,8 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎨 Closest Tailwind Color
+
+![Closest Tailwind Color App](docs/app.png)
+
+A web application that helps you find the closest match on the default Tailwind CSS palette for any chosen color. Built with Next.js, React, and TypeScript.
+
+## Features
+
+- **Color Matching**: Find the closest Tailwind color for any hex color using Euclidean distance calculation
+- **Multiple Tailwind Versions**: Support for both Tailwind CSS v3.4 and v4.0 color palettes
+- **Interactive Color Picker**: Visual color picker with hex input support
+- **OKLCH Support**: Display OKLCH color values for Tailwind v4 colors
+- **Settings**: Toggle between Tailwind versions and include/exclude black and white colors
+- **Copy to Clipboard**: Easy copying of color values with keyboard shortcuts
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -16,21 +40,42 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How It Works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application uses a color matching algorithm that:
 
-## Learn More
+1. Converts hex colors to RGB values
+2. Calculates the Euclidean distance between the input color and each Tailwind color
+3. Returns the color with the smallest distance as the closest match
 
-To learn more about Next.js, take a look at the following resources:
+The color palettes are stored as JSON files containing all Tailwind colors with their hex values, and for v4, also includes OKLCH color space values.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **UI Components**: Radix UI primitives with custom styling
+- **State Management**: Zustand with persistence
+- **Color Picker**: react-colorful
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── app/                 # Next.js app router pages
+├── components/          # React components
+│   ├── ui/             # Reusable UI components
+│   ├── color-picker.tsx # Color picker component
+│   ├── matchmaker.tsx   # Main color matching component
+│   └── ...
+├── hooks/              # Custom React hooks
+├── lib/                # Utility functions and color matching logic
+├── static/             # Tailwind color palette data
+│   ├── v3/            # Tailwind v3 color data
+│   └── v4/            # Tailwind v4 color data
+└── stores/            # Zustand state stores
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
